@@ -17,8 +17,7 @@
 如果目标值大于中间元素，在右半部分递归查找。
 代码示例：
 
-java
-复制代码
+
 public int binarySearch(int[] nums, int target) {
     return binarySearch(nums, target, 0, nums.length - 1);
 }
@@ -45,8 +44,6 @@ private int binarySearch(int[] nums, int target, int left, int right) {
 合并两个已排序的子数组，得到完整的排序结果。
 代码示例：
 
-java
-复制代码
 public void mergeSort(int[] nums) {
     if (nums == null || nums.length < 2) {
         return;
