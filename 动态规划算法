@@ -499,4 +499,69 @@ public int knapsack(int[] weights, int[] values, int W) {
     }
     return dp[n][W];
 }
+数字塔问题 (Triangle Problem)
+给定一个三角形数组，找到从顶部到底部的最小路径和。每一步只能移动到下一行中相邻的节点。
+
+例如，给定以下三角形：
+
+markdown
+复制代码
+    2
+   3 4
+  6 5 7
+ 4 1 8 3
+最小路径和是 11（2 -> 3 -> 5 -> 1）。
+
+动态规划解法
+我们可以从底部开始往上移动，在每一个位置上记录从该位置到底部的最小路径和。
+import java.util.List;
+
+public class Triangle {
+    public int minimumTotal(List<List<Integer>> triangle) {
+        if (triangle == null || triangle.size() == 0) {
+            return 0;
+        }
+
+        // 从底部开始
+        int[] dp = new int[triangle.size()];
+        List<Integer> lastRow = triangle.get(triangle.size() - 1);
+
+        for (int i = 0; i < lastRow.size(); i++) {
+            dp[i] = lastRow.get(i);
+        }
+
+        // 从倒数第二层开始向上遍历
+        for (int i = triangle.size() - 2; i >= 0; i--) {
+            List<Integer> row = triangle.get(i);
+            for (int j = 0; j < row.size(); j++) {
+                dp[j] = row.get(j) + Math.min(dp[j], dp[j + 1]);
+            }
+        }
+
+        return dp[0];
+    }
+
+    public static void main(String[] args) {
+        Triangle triangleSolver = new Triangle();
+        List<List<Integer>> triangle = List.of(
+            List.of(2),
+            List.of(3, 4),
+            List.of(6, 5, 7),
+            List.of(4, 1, 8, 3)
+        );
+
+        System.out.println("最小路径和是: " + triangleSolver.minimumTotal(triangle)); // 输出: 11
+    }
+}
+解释
+初始化：
+
+我们先将 dp 数组初始化为三角形最后一行的元素值。
+自底向上遍历：
+
+从倒数第二行开始，我们计算每个位置的最小路径和。对于每个位置，我们选择它下面的两个相邻位置中的最小路径和，加上当前位置的值，更新 dp 数组中对应的位置。
+最终结果：
+
+当我们到达三角形的顶部时，dp[0] 将包含从顶部到底部的最小路径和。
+
 这些例题涵盖了动态规划的不同应用场景，包括序列问题、路径问题、子集问题等。
