@@ -151,6 +151,9 @@ public int minDistance(String word1, String word2) {
     return dp[m][n];
 }
 7. 背包问题
+背包问题的拓展
+https://leetcode.cn/problems/word-break/solutions/744153/yi-tao-kuang-jia-jie-jue-bei-bao-wen-ti-kchg9;
+
 问题描述：给定一组物品，每个物品有一个重量和一个价值，在限定的总重量内，如何选择物品使得其总价值最大。
 
 代码示例：
