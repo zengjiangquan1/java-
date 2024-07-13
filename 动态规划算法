@@ -236,3 +236,64 @@ public class Triangle {
 当我们到达三角形的顶部时，dp[0] 将包含从顶部到底部的最小路径和。
 
 这些例题涵盖了动态规划的不同应用场景，包括序列问题、路径问题、子集问题等。
+给你一个字符串 s，找到 s 中最长的 回文子串。
+public class Solution {
+
+    public String longestPalindrome(String s) {
+        int len = s.length();
+        
+        // 如果字符串长度小于2，直接返回该字符串，因为单个字符或空串本身就是回文
+        if (len < 2) {
+            return s;
+        }
+
+        int maxLen = 1; // 记录最长回文子串的长度
+        int begin = 0; // 记录最长回文子串的起始位置
+
+        // dp[i][j] 表示从索引 i 到 j 的子串是否为回文串
+        boolean[][] dp = new boolean[len][len];
+
+        // 初始化：所有长度为 1 的子串都是回文串
+        for (int i = 0; i < len; i++) {
+            dp[i][i] = true;
+        }
+
+        char[] charArray = s.toCharArray();
+
+        // 递推开始
+        // L 表示子串的长度，从 2 开始枚举
+        for (int L = 2; L <= len; L++) {
+            // i 表示左边界，j 表示右边界
+            for (int i = 0; i < len; i++) {
+                int j = L + i - 1; // 计算右边界的索引
+
+                // 如果右边界越界，结束本次循环
+                if (j >= len) {
+                    break;
+                }
+
+                // 根据当前字符是否相等来判断是否是回文子串
+                if (charArray[i] != charArray[j]) {
+                    dp[i][j] = false;
+                } else {
+                    // 当子串长度小于等于3时，只需判断两端字符是否相等即可
+                    if (j - i < 3) {
+                        dp[i][j] = true;
+                    } else {
+                        // 当子串长度大于3时，状态转移依赖于去掉两端字符后的子串
+                        dp[i][j] = dp[i + 1][j - 1];
+                    }
+                }
+
+                // 如果找到更长的回文子串，更新 maxLen 和 begin
+                if (dp[i][j] && j - i + 1 > maxLen) {
+                    maxLen = j - i + 1;
+                    begin = i;
+                }
+            }
+        }
+
+        // 根据最长回文子串的起始位置和长度返回结果
+        return s.substring(begin, begin + maxLen);
+    }
+}
