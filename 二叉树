@@ -86,11 +86,8 @@ private TreeNode findMin(TreeNode root) {
     return root;
 }
 4. 二叉树的遍历
-markdown
-复制代码
-## 二叉树的遍历
-
-### 前序遍历 (Pre-order Traversal)
+ 二叉树的遍历
+ 前序遍历 (Pre-order Traversal)
 
 ```java
 public void preOrder(TreeNode root) {
@@ -103,7 +100,6 @@ public void preOrder(TreeNode root) {
 }
 中序遍历 (In-order Traversal)
 java
-复制代码
 public void inOrder(TreeNode root) {
     if (root == null) {
         return;
@@ -125,7 +121,6 @@ public void postOrder(TreeNode root) {
 }
 层序遍历 (Level-order Traversal)
 java
-复制代码
 public void levelOrder(TreeNode root) {
     if (root == null) {
         return;
@@ -304,7 +299,6 @@ private int maxDepth(TreeNode node, int[] diameter) {
 
 示例
 less
-复制代码
 输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
 输出: 3
 解释: 节点 5 和节点 1 的最低共同祖先是节点 3。
@@ -328,12 +322,10 @@ public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
 
 示例
 less
-复制代码
 输入: [-10,-3,0,5,9]
 输出: [0,-3,9,-10,null,5]
 解决方案
 java
-复制代码
 public TreeNode sortedArrayToBST(int[] nums) {
     return helper(nums, 0, nums.length - 1);
 }
